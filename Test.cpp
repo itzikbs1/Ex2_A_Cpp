@@ -22,14 +22,18 @@ TEST_CASE("Good input") {
 	CHECK(note.read(0,0,0,Direction::Vertical, 5) == "hello");
     note.erase(0,0,0,Direction::Vertical, 5);
     CHECK(note.read(0,0,0,Direction::Vertical, 5) == "~~~~~");
+    note.write(0,0,6,Direction::Horizontal,"This is a good test!!!");
+    CHECK(note.read(0,0,6,Direction::Horizontal, 22) != "This is a good test");
+    CHECK(note.read(0,0,6,Direction::Horizontal, 22) == "This is a good test!!!");
     note.write(0,1,0,Direction::Vertical,"hello world");
 	CHECK(note.read(0,1,0,Direction::Vertical, 11) == "hello world");
     note.erase(1,0,0,Direction::Vertical, 5);
 	CHECK(note.read(0,1,0,Direction::Vertical, 11) == "hello world");
-    note.write(0,2,0,Direction::Vertical,"hi!");
-	CHECK(note.read(0,2,0,Direction::Vertical, 3) == "hi!");
-    note.erase(0,2,0,Direction::Vertical, 3);
-	CHECK(note.read(0,2,0,Direction::Vertical, 3) == "~~~");
+    note.write(0,1,12,Direction::Vertical,"hi!");
+	CHECK(note.read(0,1,12,Direction::Vertical, 3) == "hi!");
+    CHECK(note.read(0,1,0,Direction::Vertical, 15) == "~~~~~~~~~~~~hi!");
+    note.erase(0,1,12,Direction::Vertical, 3);
+	CHECK(note.read(0,1,12,Direction::Vertical, 3) == "~~~");
 
 }
 
@@ -44,5 +48,17 @@ TEST_CASE("Bad input") {
     CHECK_THROWS(note.write(1,-1,1,Direction::Vertical, "hello world"));
     CHECK_THROWS(note.write(0,1,-1,Direction::Vertical, "hello world"));
     CHECK_THROWS(note.read(0,1,-1,Direction::Vertical, 11));
+    CHECK_THROWS(note.read(0,0,-1,Direction::Horizontal, 11));
+
+    note.write(0,0,0,Direction::Horizontal, "hello world");
+    CHECK_THROWS(note.erase(0,1,0,Direction::Vertical, 11));
+    note.erase(0,0,0,Direction::Horizontal, 11);
+    CHECK(note.read(0,0,0,Direction::Horizontal, 11) == "hello world");
+    CHECK(note.read(0,0,0,Direction::Horizontal, 11) == "~~~~~~~~~~");//only 10 ~ need to be 11 ~
+    note.write(0,0,12,Direction::Horizontal, "hi");
+    CHECK(note.read(0,0,12,Direction::Horizontal, 5) == "hello");
+    CHECK(note.read(0,0,12,Direction::Horizontal, 2) != "hi");
+    CHECK(note.read(0,0,0,Direction::Horizontal, 14) == "~~~~~~~~~~~hi!");
+
 
 }
