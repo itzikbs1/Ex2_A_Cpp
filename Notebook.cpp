@@ -9,13 +9,13 @@ using namespace std;
 namespace ariel{
 
     // Notebook note;
-    void Notebook::write(unsigned int page,unsigned int row,unsigned int column, Direction dir, string const &wr){
+    void Notebook::write(int page, int row, int column, Direction dir, string const &wr){
     }
-    string Notebook::read(unsigned int page,unsigned int row,unsigned int column, Direction dir,unsigned int num_of_chars){
+    string Notebook::read(int page, int row, int column, Direction dir, int num_of_chars){
         return "";
     }
-    void Notebook::erase(unsigned int page,unsigned int row,unsigned int column, Direction dir,unsigned int num_of_chars){
+    void Notebook::erase(int page, int row, int column, Direction dir, int num_of_chars){
     }
-    void Notebook::show(unsigned int page){
+    void Notebook::show(int page){
     }
 }

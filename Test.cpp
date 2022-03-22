@@ -53,24 +53,23 @@ TEST_CASE("Bad input") {
     note.erase(0,0,0,Direction::Vertical, 11);
     CHECK_THROWS(note.write(0,0,0,Direction::Vertical, "my name is:"));
     note.write(0,1,0,Direction::Vertical, "hello");
-    // CHECK(note.read(0,1,0,Direction::Vertical, 5) == "hell~");
-
     CHECK_THROWS(note.write(0,1,0,Direction::Vertical, "hi"));
     note.erase(0,1,0,Direction::Vertical, 2);
     CHECK_THROWS(note.write(0,1,0,Direction::Vertical, "itzik"));
-
+    CHECK_THROWS(note.write(0,1,-1,Direction::Vertical, "itzik"));
+    CHECK_THROWS(note.write(-12,1,0,Direction::Vertical, "itzik"));
+    CHECK_THROWS(note.write(0,-5,0,Direction::Vertical, "itzik"));
+    CHECK_THROWS(note.write(-1,-1,-1,Direction::Vertical, "itzik"));
     note.write(0,0,0,Direction::Horizontal, "hello world");
-    // CHECK_THROWS(note.erase(0,1,0,Direction::Vertical, -11));
+    CHECK_THROWS(note.erase(0,1,0,Direction::Vertical, -11));
     note.erase(0,0,0,Direction::Vertical, 11);
     CHECK_THROWS(note.write(0,0,0,Direction::Vertical, "hi!"));
     CHECK_THROWS(note.write(0,0,0,Direction::Horizontal, "hi!"));
     note.erase(0,0,0,Direction::Horizontal, 11);
-    CHECK(note.read(0,0,0,Direction::Horizontal, 11) == "hello world");
-    CHECK(note.read(0,0,0,Direction::Horizontal, 11) == "~~~~~~~~~~");//only 10 ~ need to be 11 ~
-    note.write(0,0,12,Direction::Horizontal, "hi");
-    CHECK(note.read(0,0,12,Direction::Horizontal, 5) == "hello");
-    CHECK(note.read(0,0,12,Direction::Horizontal, 2) != "hi");
-    CHECK(note.read(0,0,0,Direction::Horizontal, 14) == "~~~~~~~~~~~hi!");
-
+    CHECK_THROWS(note.write(0,100,50,Direction::Horizontal, "hello worldhello worldhello worldhello worldhello worldhello worldhello worldhello worldhello worldhello world"));
+    CHECK_THROWS(note.write(0,0,-1,Direction::Horizontal, "hi!"));
+    CHECK_THROWS(note.write(0,-2,0,Direction::Horizontal, "hi!"));
+    CHECK_THROWS(note.write(-3,0,0,Direction::Horizontal, "hi!"));
+    CHECK_THROWS(note.write(-1,-1,-1,Direction::Vertical, "hi!"));
 
 }

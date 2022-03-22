@@ -10,9 +10,9 @@ class Notebook{
 
     // Notebook();
     public:
-    void write(unsigned int page,unsigned int row,unsigned int column, Direction dir, string const &wr);
-    string static read(unsigned int page,unsigned int row,unsigned int column, Direction dir,unsigned int num_of_chars);
-    void erase(unsigned int page,unsigned int row,unsigned int column, Direction dir,unsigned int num_of_chars);
-    void show(unsigned int page);
+    void write(int page, int row, int column, Direction dir, string const &wr);
+    string static read(int page, int row, int column, Direction dir, int num_of_chars);
+    void erase(int page, int row, int column, Direction dir, int num_of_chars);
+    void show(int page);
 };
 }
