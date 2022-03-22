@@ -8,16 +8,14 @@
 using namespace std;
 namespace ariel{
 
-    void Notebook::write(int page, int row, int column, Direction dir, string wr){
-        return;
+    // Notebook note;
+    void Notebook::write(unsigned int page,unsigned int row,unsigned int column, Direction dir, string const &wr){
     }
-    string Notebook::read(int page, int row, int column, Direction dir, int num_of_chars){
+    string Notebook::read(unsigned int page,unsigned int row,unsigned int column, Direction dir,unsigned int num_of_chars){
         return "";
     }
-    void Notebook::erase(int page, int row, int column, Direction dir, int num_of_chars){
-        return;
+    void Notebook::erase(unsigned int page,unsigned int row,unsigned int column, Direction dir,unsigned int num_of_chars){
     }
-    void Notebook::show(int page){
-        return;
+    void Notebook::show(unsigned int page){
     }
 }
