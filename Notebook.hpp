@@ -8,7 +8,6 @@ namespace ariel{
 
 class Notebook{
 
-    // Notebook();
     public:
     void write(int page, int row, int column, Direction dir, string const &wr);
     string static read(int page, int row, int column, Direction dir, int num_of_chars);

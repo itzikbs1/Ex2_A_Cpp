@@ -8,7 +8,6 @@
 using namespace std;
 namespace ariel{
 
-    // Notebook note;
     void Notebook::write(int page, int row, int column, Direction dir, string const &wr){
     }
     string Notebook::read(int page, int row, int column, Direction dir, int num_of_chars){
